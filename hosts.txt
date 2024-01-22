@@ -1,0 +1,2 @@
+[srv]
+Newsroom ansible_host=51.250.21.194 ansible_user=ubuntu
