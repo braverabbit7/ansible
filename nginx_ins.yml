@@ -1,0 +1,21 @@
+- name: Docker
+  hosts: srv
+  gather_facts: true
+  become: true
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+    - name: Start NGINX service
+      systemd:
+        name: nginx
+        state: started
+        enabled: true
+    - name: Retrieve IP address
+      set_fact:
+        host_ip: "{{ ansible_default_ipv4.address }}"
+    - name: Create HTML file with hostname
+      template:
+        src: index.html.j2
+        dest: /var/www/html/index.html    
