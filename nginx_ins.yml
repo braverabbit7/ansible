@@ -1,21 +1,19 @@
-- name: Docker
+- name: Nginx_install
   hosts: srv
   gather_facts: true
   become: true
   tasks:
     - name: Install nginx
-      apt:
+      ansible.builtin.apt:
         name: nginx
         state: present
     - name: Start NGINX service
-      systemd:
+      ansible.builtin.systemd:
         name: nginx
         state: started
         enabled: true
-    - name: Retrieve IP address
-      set_fact:
-        host_ip: "{{ ansible_default_ipv4.address }}"
     - name: Create HTML file with hostname
-      template:
+      ansible.builtin.template:
         src: index.html.j2
-        dest: /var/www/html/index.html    
+        mode: '0o644'  # права на /var/www/html/index.html
+        dest: /var/www/html/index.html
