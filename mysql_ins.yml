@@ -1,0 +1,12 @@
+- name: Docker
+  hosts: srv
+  become: true
+  tasks:
+    - name: Install my_sql
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      loop:
+        - mysql-client
+        - mysql-server
