@@ -17,19 +17,19 @@
   loop:
    - nginx
    - php{{ php_version }}-fpm
+- name: Create ansible directory
+  ansible.builtin.file:
+   path: /opt/nginx/ansible
+   state: directory
+   mode: '0o745'
 - name: Create HTML file with hostname
   ansible.builtin.template:
    src: index.php.j2
-   mode: '0o644'  # права на /var/www/html/index.html
-   dest: /var/www/html/index.php
+   mode: '0o645'  # права на /var/www/html/index.html
+   dest: "/opt/nginx/ansible/index.php"
 - name: New site for nginx
   ansible.builtin.template:
    src: new_site.j2
    mode: '0o644'  # права на /var/www/html/index.html
    dest: /etc/nginx/sites-available/default
-- name: Restart Nginx
-  ansible.builtin.service:
-    name: nginx
-    state: restarted
-
-
+  notify: Restart_nginx

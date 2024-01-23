@@ -1,3 +1,2 @@
 [srv]
-Newsroom ansible_host=51.250.21.194 ansible_user=ubuntu
-Test 	 ansible_host=158.160.66.159 ansible_user=ubuntu
+sfhw 	 ansible_host=51.250.21.194 ansible_user=ubuntu
