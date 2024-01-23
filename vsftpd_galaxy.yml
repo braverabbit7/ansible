@@ -1,0 +1,6 @@
+- name: Vsftpd install
+  hosts: srv
+  gather_facts: false
+  become: true
+  roles:
+   - vsftpd

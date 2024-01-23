@@ -1,0 +1,12 @@
+---
+# tasks file for mysql
+- name: Install package
+  ansible.builtin.apt:
+   name: mariadb-server
+   state: absent
+
+- name: Start service
+  ansible.builtin.service:
+   name: mariadb
+   state: started
+   enabled: true
