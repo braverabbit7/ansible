@@ -3,7 +3,7 @@
   become: true
   tasks:
     - name: Install my_sql
-      apt:
+      ansible.builtin.apt:
         name: "{{ item }}"
         state: present
         update_cache: true

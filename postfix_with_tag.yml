@@ -1,0 +1,15 @@
+- name: Create user with key
+  hosts: srv
+  become: true
+  tasks:
+    - name: Установка Postfix
+      ansible.builtin.package:
+        name: postfix
+        state: present
+      tags: init postfix
+
+    - name: Удаление Postfix
+      ansible.builtin.package:
+        name: postfix
+        state: absent
+      tags: drop postfix
