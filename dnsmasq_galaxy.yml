@@ -1,6 +1,6 @@
-- name: Vsftpd install
+- name: Dnsmasq install
   hosts: srv
   gather_facts: false
   become: true
   roles:
-   - vsftpd
+   - dnsmasq

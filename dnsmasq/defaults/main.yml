@@ -1,0 +1,8 @@
+---
+# defaults file for dnsmasq
+dnsmasq_port: "53"
+dnsmasq_nameserver:
+  - "8.8.8.8"
+  - "8.8.4.4"
+dnsmasq_cache: "4096"
+listen_interface: "0.0.0.0"

@@ -1,0 +1,12 @@
+---
+# tasks file for dnsmasq
+- name: Install package dnsmasq
+  ansible.builtin.apt:
+   name: dnsmasq
+   state: present
+
+- name: Start service
+  ansible.builtin.service:
+   name: dnsmasq
+   state: started
+   enabled: true

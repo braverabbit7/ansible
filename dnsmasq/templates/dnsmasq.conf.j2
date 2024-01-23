@@ -1,0 +1,13 @@
+# Использовать все доступные интерфейсы
+interface={{ listen_interface }}
+port={{ dnsmasq_port }}
+# Слушать UDP-запросы на порту 53
+#listen-address=127.0.0.1
+
+# Включить кеширование DNS
+cache-size=1000
+
+# Указать upstream DNS-серверы
+{% for nameserver in dnsmasq_nameserver %}
+server={{ nameserver }}
+{% endfor %}
