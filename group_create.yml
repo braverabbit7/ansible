@@ -1,0 +1,22 @@
+- name: Configure superusers group
+  hosts: srv
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Add a group called superusers
+      ansible.builtin.group:
+        name: superusers
+        state: present
+    - name: Add a simple user called users
+      ansible.builtin.user:
+        name: "{{ item }}"
+        shell: /bin/bash
+        group: superusers
+      loop:
+        - user2
+        - user3
+    - name: Configure sudoers for superusers
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        line: 'superusers ALL=(ALL) NOPASSWD: /usr/bin/sudo -i'
+        validate: 'visudo -cf %s'
