@@ -1,0 +1,3 @@
+---
+# defaults file for webnginx
+php_version: 8.1

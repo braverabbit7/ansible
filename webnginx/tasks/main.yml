@@ -1,0 +1,35 @@
+---
+# tasks file for webnginx
+- name: Nginx_php
+  ansible.builtin.apt:
+   name: "{{ item }}"
+   state: present
+   update_cache: true
+  loop:
+   - nginx
+   - php{{ php_version }}-fpm
+
+- name: Start services
+  ansible.builtin.service:
+   name: "{{ item }}"
+   state: started
+   enabled: true
+  loop:
+   - nginx
+   - php{{ php_version }}-fpm
+- name: Create HTML file with hostname
+  ansible.builtin.template:
+   src: index.php.j2
+   mode: '0o644'  # права на /var/www/html/index.html
+   dest: /var/www/html/index.php
+- name: New site for nginx
+  ansible.builtin.template:
+   src: new_site.j2
+   mode: '0o644'  # права на /var/www/html/index.html
+   dest: /etc/nginx/sites-available/default
+- name: Restart Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+
+

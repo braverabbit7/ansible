@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name localhost;
+
+    root /var/www/html;  # Путь к вашей директории с файлами
+    index index.php index.htm index.html;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    # Добавьте этот блок для обработки запросов к PHP файлам (если используется PHP)
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php{{ php_version }}-fpm.sock;  # Замените на фактический путь к вашему PHP-FPM сокету и версию PHP
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
