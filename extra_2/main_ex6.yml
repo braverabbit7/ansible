@@ -1,0 +1,16 @@
+- name: Extra_tasks
+  hosts: sfhw
+  gather_facts: false
+  become: true
+  vars:
+   php_ip: "{{ hostvars['sfhw2']['ansible_host'] }}"
+  roles:
+   - http
+   - users
+- name: Extra_tasks
+  hosts: sfhw2
+  gather_facts: false
+  become: true
+  roles:
+   - php
+   - users

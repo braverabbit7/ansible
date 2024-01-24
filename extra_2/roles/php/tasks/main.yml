@@ -1,0 +1,21 @@
+- name: Create web path
+  ansible.builtin.file:
+   path: /var/www/html/
+   state: directory
+   mode: '0755'
+- name: Create php file with hostname
+  ansible.builtin.template:
+   src: index.php.j2
+   mode: '0o645'  # права на /var/www/html/index.html
+   dest: "/var/www/html/index.php"
+- name: Php-fpm
+  ansible.builtin.apt:
+   name: php{{ php_version }}-fpm
+   state: present
+   update_cache: true
+- name: Change config php-fpm
+  ansible.builtin.template:
+   src: www.conf.j2
+   mode: '0o644'  # права на /var/www/html/index.html
+   dest: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
+  notify: Restart_php-fpm
