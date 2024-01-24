@@ -1,0 +1,8 @@
+- name: Extra_tasks
+  hosts: srv
+  gather_facts: false
+  become: true
+  roles:
+   - php
+   - http
+   - users

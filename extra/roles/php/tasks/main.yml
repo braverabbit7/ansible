@@ -1,0 +1,11 @@
+- name: Php-fpm
+  ansible.builtin.apt:
+   name: php{{ php_version }}-fpm
+   state: present
+   update_cache: true
+- name: Change config php-fpm
+  ansible.builtin.template:
+   src: www.conf.j2
+   mode: '0o644'  # права на /var/www/html/index.html
+   dest: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
+  notify: Restart_php-fpm

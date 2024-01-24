@@ -1,0 +1,27 @@
+- name: Install nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+- name: Start NGINX service
+  ansible.builtin.systemd:
+    name: nginx
+    state: started
+    enabled: true
+
+- name: Remove file (delete file)
+  ansible.builtin.file:
+    path: /var/www/html/index.html
+    state: absent
+
+- name: Create php file with hostname
+  ansible.builtin.template:
+    src: index.php.j2
+    mode: '0o645'  # права на /var/www/html/index.html
+    dest: "/var/www/html/index.php"
+
+- name: Change config nginx
+  ansible.builtin.template:
+    src: new_ng_config.j2
+    mode: '0o644'  # права на /var/www/html/index.html
+    dest: /etc/nginx/sites-available/default
+  notify: Restart_nginx
