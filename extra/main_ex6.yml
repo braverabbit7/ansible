@@ -1,0 +1,14 @@
+- name: Extra_tasks
+  hosts: sfhw
+  gather_facts: false
+  become: true
+  roles:
+   - http
+   - users
+- name: Extra_tasks
+  hosts: sfhw2
+  gather_facts: false
+  become: true
+  roles:
+   - php
+   - users
