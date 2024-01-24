@@ -1,0 +1,10 @@
+- name: Create user
+  ansible.builtin.user:
+      name: user1
+      shell: /bin/bash
+
+- name: Set authorized key taken from file
+  ansible.posix.authorized_key:
+      user: user1
+      state: present
+      key: "{{ lookup('file', 'key/id_rsa.pub') }}"

@@ -1,2 +1,3 @@
 [srv]
-sfhw 	 ansible_host=51.250.21.194 ansible_user=ubuntu
+sfhw 	 ansible_host=158.160.123.182 ansible_user=ubuntu
+test 	 ansible_host=158.160.60.31 ansible_user=ubuntu
