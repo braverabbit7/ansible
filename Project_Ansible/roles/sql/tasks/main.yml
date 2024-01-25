@@ -1,0 +1,9 @@
+- name: PostgreSQL_install
+  ansible.builtin.apt:
+   name: postgresql-{{ sql_version }}
+   state: present
+
+- name: PostgreSQL_run
+  ansible.builtin.service:
+   name: postgresql
+   state: started

@@ -1,0 +1,42 @@
+- name: Install dependencies Docker на Ubuntu
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
+  when: ansible_distribution == "Ubuntu"
+
+- name: Add GPG for Docker  Ubuntu
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+  when: ansible_distribution == "Ubuntu"
+
+- name: Add Docker repository Ubuntu
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+    filename: docker
+  when: ansible_distribution == "Ubuntu"
+
+- name: Add Docker repository CentOS
+  ansible.builtin.yum_repository:
+    name: docker-ce
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    enabled: true
+  when: ansible_distribution == "CentOS"
+
+- name: Install Docker  Ubuntu/CentOS
+  ansible.builtin.package:
+    name: docker-ce
+    state: present
+
+- name: Run Docker
+  ansible.builtin.service:
+    name: docker
+    state: started

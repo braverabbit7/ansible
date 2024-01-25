@@ -1,0 +1,7 @@
+#cloud-config
+users:
+- name: Ansible
+  sudo: ALL=(ALL) NOPASSWD:ALL
+  shell: /bin/bash
+  ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDAbwtzygq4IUsfozgkME+EKAhHejtclV6iT/n0KnToSXjg/WL1t8//yJTOdbZOi+2xWgr50y79Sn5TgCW2RZwuug74whe5H8UoV+9waX7nYuus/2xCz4SRyTzuqiksL0RWkOn9VguyQ/Oe1ITjedHfehu59xaaKyq71glOSMB8c9slvH6z+5MeT+V0xo8exJUbFsfEnUNl96J0oiiq8ZBJbfZ/G3X7BZ28aZkWg+IGPF0bq0ztNAimd/sysM9BRJlLQY9ooana9zWv+I1rxrSzg37x3e5KfHJknAKI5eXAnsPMKvAA0vkEaZoK5zNA2ch+SQ1uySrwNji3BZ4nIuz1JR6cBx1wLAzsojg7uG0m4xe1uKbhNKtNWurCh3MGPcz4Oi7ol9mwmviJ+JelMBmPM/IU2VV8yMLbGGuDuzfeelZYWTGVZ1iW2bpuGS54hvor3t1wprxkjEbAyqHBhseR64HPcdBAd1qpbkAqdVIPAA2DXYrtZpXj8+AGjlLKCK9tJbAeGtA8iSbiTPhmeOi9xa3Lck07UFORCTQ7i9WxP2yIHXEjDNGCktnums8uo+mZ3eSGtIPUOwRIouG/f53FtNwpJdh+OtGAL3pbpfwZHWSGsv0yUA0o7jS/mEO9a7xzQEjVbhnyPcEuXFCnLpF1GlHJPdtW1a9DjInwMCLFOQ== elf@ip-10-7-0-2.eu-central-1.compute.internal
